@@ -1,6 +1,6 @@
 <template>
-  <hik-cloud-page-container class="devices-failure">
-    <hik-cloud-layout>
+  <ez-clooud-page-container class="devices-failure">
+    <ez-clooud-layout>
       <resizeBox :defaultW="280" :minW="240" :maxW="624">
         <div class="left-part">
           <TreeAnsySearch ref="tree" :treeAnsyProps="treeAnsyProps" :storeListProps="storeListProps"
@@ -8,9 +8,9 @@
           </TreeAnsySearch>
         </div>
       </resizeBox>
-      <hik-cloud-page-content class="devices-failure-content" flex>
-        <hik-cloud-page-search ref="search" :model="search">
-          <hik-cloud-page-search-item v-if="isBigTenant" label="项目/客户" prop="projectCustom">
+      <ez-clooud-page-content class="devices-failure-content" flex>
+        <ez-clooud-page-search ref="search" :model="search">
+          <ez-clooud-page-search-item v-if="isBigTenant" label="项目/客户" prop="projectCustom">
             <selfSelect
               remote
               clear
@@ -24,8 +24,8 @@
               <el-option key="" label="全部" value="" />
               <el-option v-for="(item,index) in projectList" :key="index" :label="item.name" :value="item.val" />
             </selfSelect>
-          </hik-cloud-page-search-item>
-          <hik-cloud-page-search-item v-if="isBigTenant" label="代理商" prop="agentId">
+          </ez-clooud-page-search-item>
+          <ez-clooud-page-search-item v-if="isBigTenant" label="代理商" prop="agentId">
             <selfSelect
               remote
               clear
@@ -40,8 +40,8 @@
               <el-option key="" label="全部" value="" />
               <el-option v-for="(item,index) in agentList" :key="index" :label="item.agentName" :value="item.id" />
             </selfSelect>
-          </hik-cloud-page-search-item>
-          <hik-cloud-page-search-item label="客户租户" prop="subTenantId" v-if="isBigTenant">
+          </ez-clooud-page-search-item>
+          <ez-clooud-page-search-item label="客户租户" prop="subTenantId" v-if="isBigTenant">
             <selfSelect
               remote
               clear
@@ -62,8 +62,8 @@
                 :value="item.subTenantId"
               />
             </selfSelect>
-          </hik-cloud-page-search-item>
-          <hik-cloud-page-search-item label="客户租户项目" prop="subProjectId" v-if="isBigTenant">
+          </ez-clooud-page-search-item>
+          <ez-clooud-page-search-item label="客户租户项目" prop="subProjectId" v-if="isBigTenant">
             <selfSelect
               remote
               clear
@@ -83,20 +83,20 @@
                 :value="item.projectId"
               />
             </selfSelect>
-          </hik-cloud-page-search-item>
-          <hik-cloud-page-search-item label="设备状态" prop="devStatus">
+          </ez-clooud-page-search-item>
+          <ez-clooud-page-search-item label="设备状态" prop="devStatus">
             <el-select v-model="search.devStatus" clear placeholder="请选择设备状态">
               <el-option key="" label="全部" value="" />
               <el-option :key="0" label="离线" :value="0" />
               <el-option :key="1" label="在线" :value="1" />
             </el-select>
-          </hik-cloud-page-search-item>
-          <hik-cloud-page-search-item label="设备类型" prop="devTypeList">
+          </ez-clooud-page-search-item>
+          <ez-clooud-page-search-item label="设备类型" prop="devTypeList">
             <selfSelect v-model="search.devTypeList" clearable placeholder="设备类型" collapse-tags multiple multiple-nowrap showAllTag showSelectAll>
               <el-option v-for="(item,index) in devTypeList" :key="index" :label="item.name" :value="item.val" />
             </selfSelect>
-          </hik-cloud-page-search-item>
-          <hik-cloud-page-search-item v-if='search.masterOrSub==0' label="所属主设备序列号" prop="parDevSerial">
+          </ez-clooud-page-search-item>
+          <ez-clooud-page-search-item v-if='search.masterOrSub==0' label="所属主设备序列号" prop="parDevSerial">
             <inputSearch
               placeholder="请输入完整设备序列号"
               :value.sync="search.parDevSerial"
@@ -105,8 +105,8 @@
               @search="handleSearch"
             >
             </inputSearch>
-          </hik-cloud-page-search-item>
-          <hik-cloud-page-search-item label="设备序列号" prop="devSerial">
+          </ez-clooud-page-search-item>
+          <ez-clooud-page-search-item label="设备序列号" prop="devSerial">
             <inputSearch
               placeholder="请输入完整设备序列号"
               :value.sync="search.devSerial"
@@ -115,15 +115,15 @@
               @search="handleSearch"
             >
             </inputSearch>
-          </hik-cloud-page-search-item>
+          </ez-clooud-page-search-item>
           <!-- 待处理、处理中、待服务商处理、服务商处理中、已完成 -->
-          <hik-cloud-page-search-item label="设备型号" prop="devMode">
+          <ez-clooud-page-search-item label="设备型号" prop="devMode">
             <el-select v-model="search.devMode" clear placeholder="请选择设备型号">
               <el-option key="" label="全部" value="" />
               <el-option v-for="(item,index) in devModelList" :key="index" :label="item" :value="item" />
             </el-Select>
-          </hik-cloud-page-search-item>
-          <hik-cloud-page-search-item label="停车场" prop="parkingIot">
+          </ez-clooud-page-search-item>
+          <ez-clooud-page-search-item label="停车场" prop="parkingIot">
             <inputSearch
               placeholder="请输入..."
               :value.sync="search.parkingIot"
@@ -132,8 +132,8 @@
               @search="handleSearch"
             >
             </inputSearch>
-          </hik-cloud-page-search-item>
-          <hik-cloud-page-search-item label="设备名称" prop="devName">
+          </ez-clooud-page-search-item>
+          <ez-clooud-page-search-item label="设备名称" prop="devName">
             <inputSearch
               placeholder="请输入..."
               :value.sync="search.devName"
@@ -142,13 +142,13 @@
               @search="handleSearch"
             >
             </inputSearch>
-          </hik-cloud-page-search-item>
+          </ez-clooud-page-search-item>
           <template slot="pageSearchAction">
             <el-button type="primary" @click="handleSearch('search')">查询</el-button>
             <el-button @click="handleReset">重置</el-button>
           </template>
-        </hik-cloud-page-search>
-        <hik-cloud-page-action>
+        </ez-clooud-page-search>
+        <ez-clooud-page-action>
           <el-radio-group v-model="search.masterOrSub" @change='masterOrSubChange' type="simple">
             <el-radio-button :label="1">主设备</el-radio-button>
             <el-radio-button :label="0">子设备</el-radio-button>
@@ -174,8 +174,8 @@
             <el-button style="margin-left: 8px;" icon="h-icon-import" v-if="isBigTenant" type="iconButton"
               @click='importDevice("customerTenant")'>导表关联客户租户</el-button>
           </div>
-        </hik-cloud-page-action>
-        <hik-cloud-page-table
+        </ez-clooud-page-action>
+        <ez-clooud-page-table
           class="devices-failure-table-wrapper"
           full
           :current-page.sync="search.pageNo"
@@ -246,15 +246,15 @@
               </template>
             </el-table-column>
           </el-table>
-        </hik-cloud-page-table>
-      </hik-cloud-page-content>
-    </hik-cloud-layout>
+        </ez-clooud-page-table>
+      </ez-clooud-page-content>
+    </ez-clooud-layout>
     <transferDialog v-if="transferDialogVisible" :source="source" :visible.sync="transferDialogVisible"
       :node="currentManifastNode" :currentRow='currentRow' @success="getTable"></transferDialog>
     <uploadFile @success='refresh' :source="sourceName" :dialogVisible.sync="fileVisible"></uploadFile>
     <!-- 添加设备流程 -->
     <addDevice :visible.sync="addDeviceVisible" :node="currentNode" @success="getTable"></addDevice>
-  </hik-cloud-page-container>
+  </ez-clooud-page-container>
 </template>
 
 <script>
